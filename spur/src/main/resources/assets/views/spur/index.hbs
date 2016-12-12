@@ -1,0 +1,39 @@
+<!-- spur's "index" View -->
+{{#partial "content"}}
+    <div class="site-content">
+        <div class="row">
+            <div class="col col-6">
+                <div class="input-group" id="hotel-search-wrapper">
+                    <input id="hotel-search" type="text" placeholder='Hotel name' autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                </div>
+            </div>
+            <div class="col col-3">
+                {{include "partials/uitk/calendar" dateRange=true startDateId="abc" endDateId="xyz"}}
+            </div>
+            <div class="col col-3">
+                <span class="h1 left">
+                <span id="hotel-filter-type-fourStar" class="hotel-filter icon icon-stars4-0" data-active-icon="stars4-0" data-inactive-icon="stars4-0"></span>
+                <i id="hotel-filter-type-availability" class="hotel-filter icon icon-close" data-active-icon="success" data-inactive-icon="close"></i>
+                <i id="hotel-filter-type-preferred" class="hotel-filter icon icon-award" data-active-icon="awardalt" data-inactive-icon="award"></i>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-flush col-8">
+                {{include "partials/uitk/map" id="hotels-map" mapDataId="hotels"}}
+            </div>
+            <div id="hotel-details" class="col-flush col-4">
+                <span class="">Hotel details</span>
+            </div>
+        </div>
+    </div>
+{{/partial}}
+
+{{#partial "more-scripts"}}
+    <!--Include this View's Presenter-->
+    <script>EG.spur.Presenters.Index()</script>
+{{/partial}}
+
+<!-- The Layout used for this View -->
+{{> layouts/default}}
+

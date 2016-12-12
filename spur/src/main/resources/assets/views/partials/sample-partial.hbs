@@ -1,0 +1,16 @@
+{{!--
+
+Partial Views or "partials" are small re-usable parts of a View. Partials can be:
+1) used to just help organize break big templates into smaller chunks
+2) re-used client-side for the dynamic parts of a View, e.g. rendering a new list of search results
+
+** HOW TO USE **
+{{> partials/my-partial data}}
+{{include "partials/my-partial" foo=data.foo bar=data.bar}}
+
+--}}
+
+<!-- This sample partial expects a context with 'id', 'classes', and 'title' properties -->
+<div id="{{id}}" class="{{classes}}">
+    <h3>{{title}}</h3>
+</div>

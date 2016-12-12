@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Egencia - {{i18nMsg pageTitle}}</title>
+        <!-- Stylesheets -->
+        {{> partials/uitk/core-css}}
+        {{> partials/uitk/head-tags}}
+        <link rel="stylesheet" href="{{EG.assetPath}}/css/spur-core.css">
+    </head>
+    <body>
+        {{> partials/uitk/header hf}}
+        {{{block "content"}}}
+        {{> partials/uitk/footer hf}}
+
+        <!-- Scripts -->
+        {{> partials/uitk/core-js}}
+        <!-- Your shared scripts go here -->
+        <script src="{{EG.assetPath}}/js/bundles/app.js"></script>
+        <!-- Each View's "more-scripts" partial comes in here -->
+        {{{block "more-scripts"}}}
+    </body>
+</html>

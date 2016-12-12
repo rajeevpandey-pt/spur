@@ -1,0 +1,147 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.egencia.webapp.spur</groupId>
+		<artifactId>spur-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>spur-acceptance</artifactId>
+	<packaging>jar</packaging>
+	<name>spur is Egencia gamification webapp - Acceptance Tests</name>
+	<description>spur is Egencia gamification webapp - Acceptance Tests</description>
+	<properties>
+		<cucumber.version>1.1.5</cucumber.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>spur</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-core</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-spring</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<profiles>
+		<profile>
+			<id>cargo</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<!-- Reserve available ports -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>build-helper-maven-plugin</artifactId>
+						<version>1.8</version>
+						<executions>
+							<execution>
+								<id>reserve-network-ports</id>
+								<goals>
+									<goal>reserve-network-port</goal>
+								</goals>
+								<configuration>
+									<portNames>
+										<portName>cargo.http.port</portName>
+										<portName>cargo.ajp.port</portName>
+									</portNames>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-failsafe-plugin</artifactId>
+						<configuration>
+							<argLine>-Dhttp.port=${cargo.http.port}</argLine>
+							<includes>
+								<include>**/*Runner.java</include>
+							</includes>
+						</configuration>
+						<executions>
+							<execution>
+								<id>integration-test</id>
+								<goals>
+									<goal>integration-test</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>verify</id>
+								<goals>
+									<goal>verify</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.codehaus.cargo</groupId>
+						<artifactId>cargo-maven2-plugin</artifactId>
+						<version>1.4.4</version>
+						<configuration>
+							<container>
+								<containerId>tomcat7x</containerId>
+								<zipUrlInstaller>
+									<url>http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.47/bin/apache-tomcat-7.0.47.zip</url>
+									<downloadDir>${settings.localRepository}/downloads</downloadDir>
+									<extractDir>${project.build.directory}/extracts</extractDir>
+								</zipUrlInstaller>
+							</container>
+						</configuration>
+
+						<executions>
+							<execution>
+								<id>start-container</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>start</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>stop-container</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>stop</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>

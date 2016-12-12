@@ -1,0 +1,23 @@
+@height: 500;
+
+#hotel-search-wrapper {
+  .margin(b, @baseFontPx, 6);
+}
+
+#hotel-details {
+  color: white;
+  background-color: @colorSlateMed;
+  .height(@baseFontPx, @height);
+}
+
+#hotels-map {
+  background-color: @colorSlateLight;
+  .height(@baseFontPx, @height);
+}
+
+.hotel-filter {
+  cursor: pointer;
+  &.active {
+    color: @colorBlueMed;
+  }
+}

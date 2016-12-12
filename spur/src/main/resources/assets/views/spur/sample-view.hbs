@@ -1,0 +1,11 @@
+{{#partial "content"}}
+    {{!-- HTML in here replaces {{{#block "content"}}} in the Layout --}}
+{{/partial}}
+
+{{#partial "more-scripts"}}
+    {{!-- JavaScript in here replaces {{{#block "more-scripts"}}} in the Layout --}}
+    <script>EG.spur.Presenters.Sample()</script>
+{{/partial}}
+
+<!-- The Layout for this View -->
+{{> layouts/default}}

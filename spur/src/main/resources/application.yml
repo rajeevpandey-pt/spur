@@ -1,0 +1,39 @@
+handlebars:
+  cache:
+    enabled: false
+
+# AuthFilter configuration (make sure to ask YOUR OWN basicAuth value)    
+auth:
+  enabled: false
+  serviceUrl: http://wwwegenciacom.int-maui.sb.karmalab.net/auth-service
+  basicAuth: YTRmN2U4OTMtYjk3My00NDg2LTgzY2EtY2M5Nzg0YjZiZWU2OmF5bTA3Z1FFc0duMlJVYmxYY2RNWlpmcUZuRzVhZkVP
+  redirect: true
+
+# UITK  
+uitk:
+  euweb:
+    header:
+      url: https://wwwegenciaeu.int-maui.sb.karmalab.net
+  naweb:
+    header:
+      url: https://wwwegenciacom.int-maui.sb.karmalab.net
+#  noHeader=true
+#  runmode=local
+
+# Config Service      
+configservice:
+  url: http://wwwegenciacom.int-maui.sb.karmalab.net/config-service
+  
+#UserService Base URI for UITK's GlobalContext
+userservice:
+  baseUri: http://wwwegenciacom.int-maui.sb.karmalab.net/user-service
+
+server:
+  port: 8080
+  context-path: /spur
+  use-forward-headers: true
+
+management:
+  port: 8083
+  security:
+    enabled: false
